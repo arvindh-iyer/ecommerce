@@ -24,13 +24,15 @@ const db_connect=require('./models/db_connect')
 const userRoutes=require('./routes/userRoutes')
 const cors=require('cors')
 
-db_connect()
+
 app.use(cors())
 app.use(express.json())
+db_connect()
 
 app.get("/",(req,res)=>{
     res.send("api is running successfully")
 })
+
 
 
 app.use('/api/user',userRoutes)

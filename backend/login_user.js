@@ -12,13 +12,8 @@ const login_user=asyncHandler(async(req,res)=>{
         bcrypt.compare(password, item.password ,
         (err,result)=>{
             if(result){
-                res.status(200).json({
-                    _id:item._id,
-                    name:item.name,
-                    email:item.email,
-                    password:item.password,
-                    pic:item.pic,
-                    token:generateToken(item._id)
+                res.status(200).send({
+                    token:generateToken(item._id,item.name,item.pic)
                 })
             }
             else throw new Error("invalid password")
